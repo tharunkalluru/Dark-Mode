@@ -52,49 +52,95 @@ function createDarkModeStyles() {
       filter: invert(1) hue-rotate(180deg) !important;
     }
     
-    /* Preserve images, videos, and certain elements */
-    .contentstack-dark-mode img,
+    /* Preserve only specific types of content from inversion */
+    /* Images, videos, and media content - BUT exclude navigation logos */
+    .contentstack-dark-mode img:not([src*="logo"]):not([alt*="logo"]):not(.header__list--org_banner_cover img),
     .contentstack-dark-mode video,
     .contentstack-dark-mode iframe,
-    .contentstack-dark-mode svg,
-    .contentstack-dark-mode [style*="background-image"],
     .contentstack-dark-mode canvas,
     .contentstack-dark-mode embed,
     .contentstack-dark-mode object {
       filter: invert(1) hue-rotate(180deg) !important;
     }
     
-    /* Handle Contentstack specific elements */
-    .contentstack-dark-mode .cs-logo,
-    .contentstack-dark-mode .logo,
-    .contentstack-dark-mode [class*="logo"],
-    .contentstack-dark-mode .avatar,
-    .contentstack-dark-mode [class*="avatar"],
-    .contentstack-dark-mode .profile-image,
-    .contentstack-dark-mode [class*="profile"] img {
+    /* Let navigation logos be inverted for better visibility in dark mode */
+    .contentstack-dark-mode [class*="header"] img[src*="logo"],
+    .contentstack-dark-mode [class*="navbar"] img[src*="logo"],
+    .contentstack-dark-mode [class*="nav"] img[src*="logo"],
+    .contentstack-dark-mode [class*="banner"] img[src*="logo"],
+    .contentstack-dark-mode img[alt="logo"] {
+      filter: none !important; /* Let them be inverted by the global filter */
+    }
+    
+    /* Preserve branded logos and complex graphics */
+    .contentstack-dark-mode [class*="logo"] svg,
+    .contentstack-dark-mode [class*="Logo"] svg,
+    .contentstack-dark-mode [class*="brand"] svg,
+    .contentstack-dark-mode [class*="Brand"] svg,
+    .contentstack-dark-mode [data-test-id*="logo"] svg,
+    .contentstack-dark-mode [aria-label*="logo" i] svg,
+    .contentstack-dark-mode .avatar svg,
+    .contentstack-dark-mode [class*="avatar"] svg,
+    .contentstack-dark-mode .profile-image svg,
+    .contentstack-dark-mode [class*="profile"] svg {
       filter: invert(1) hue-rotate(180deg) !important;
     }
     
-    /* Improve contrast for text */
+    /* Preserve complex SVG illustrations and graphics */
+    .contentstack-dark-mode svg[class*="illustration"],
+    .contentstack-dark-mode svg[class*="graphic"],
+    .contentstack-dark-mode svg[class*="chart"],
+    .contentstack-dark-mode svg[class*="diagram"] {
+      filter: invert(1) hue-rotate(180deg) !important;
+    }
+    
+    /* Preserve background images */
+    .contentstack-dark-mode [style*="background-image"] {
+      filter: invert(1) hue-rotate(180deg) !important;
+    }
+    
+    /* Handle Contentstack specific branded elements */
+    .contentstack-dark-mode .cs-logo,
+    .contentstack-dark-mode [class*="contentstack"] img,
+    .contentstack-dark-mode [class*="Contentstack"] img {
+      filter: invert(1) hue-rotate(180deg) !important;
+    }
+    
+    /* Improve contrast for text elements */
     .contentstack-dark-mode {
       background-color: #1a1a1a !important;
     }
     
-    /* Handle code blocks and syntax highlighting */
-    .contentstack-dark-mode pre,
-    .contentstack-dark-mode code,
+    /* SIMPLIFIED LOG DARK MODE - Let global inversion work naturally */
+    
+    /* No special handling needed - logs will be inverted with everything else */
+    /* This creates dark backgrounds and light text automatically */
+    
+    /* Handle code blocks and syntax highlighting (excluding logs) */
+    .contentstack-dark-mode pre:not([class*="logs"] *):not([class*="log"] *),
+    .contentstack-dark-mode code:not([class*="logs"] *):not([class*="log"] *),
     .contentstack-dark-mode .monaco-editor,
-    .contentstack-dark-mode [class*="code"],
-    .contentstack-dark-mode [class*="syntax"] {
+    .contentstack-dark-mode [class*="syntax"],
+    .contentstack-dark-mode [class*="Code"],
+    .contentstack-dark-mode [class*="editor"]:not([class*="logs"]):not([class*="log"]) {
       filter: invert(1) hue-rotate(180deg) !important;
       background-color: #2d2d2d !important;
     }
     
-    /* Handle maps and special content */
+    /* Handle maps and special interactive content */
     .contentstack-dark-mode [class*="map"],
     .contentstack-dark-mode [id*="map"],
     .contentstack-dark-mode .leaflet-container,
-    .contentstack-dark-mode .google-maps {
+    .contentstack-dark-mode .google-maps,
+    .contentstack-dark-mode [class*="Map"] {
+      filter: invert(1) hue-rotate(180deg) !important;
+    }
+    
+    /* Preserve color-coded status indicators and badges */
+    .contentstack-dark-mode [class*="status"][style*="background"],
+    .contentstack-dark-mode [class*="badge"][style*="background"],
+    .contentstack-dark-mode [class*="label"][style*="background"],
+    .contentstack-dark-mode [class*="tag"][style*="background"] {
       filter: invert(1) hue-rotate(180deg) !important;
     }
   `;
