@@ -12,30 +12,8 @@ A simple Chrome extension that provides a dark mode toggle specifically for Cont
 
 ## Installation
 
-### Step 1: Prepare Icons
-First, convert the SVG icon to PNG files:
 
-**Option A: Using the script (requires ImageMagick)**
-```bash
-# Install ImageMagick if you don't have it
-brew install imagemagick  # macOS
-# or
-sudo apt-get install imagemagick  # Ubuntu
-
-# Run the conversion script
-chmod +x convert-icons.sh
-./convert-icons.sh
-```
-
-**Option B: Manual conversion**
-- Use an online converter like [CloudConvert](https://cloudconvert.com/svg-to-png)
-- Convert `icons/icon.svg` to PNG files:
-  - `icons/icon-16.png` (16x16 pixels)
-  - `icons/icon-32.png` (32x32 pixels)
-  - `icons/icon-48.png` (48x48 pixels)
-  - `icons/icon-128.png` (128x128 pixels)
-
-### Step 2: Load Extension in Chrome
+### Step 1: Load Extension in Chrome
 
 1. Open Chrome and go to `chrome://extensions/`
 2. Enable "Developer mode" in the top right
@@ -43,7 +21,7 @@ chmod +x convert-icons.sh
 4. Select this folder containing the extension files
 5. The extension should now appear in your extensions list
 
-### Step 3: Use the Extension
+### Step 2: Use the Extension
 
 1. Navigate to any Contentstack app page (app.contentstack.com)
 2. Click the extension icon in your Chrome toolbar
