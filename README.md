@@ -12,8 +12,12 @@ A simple Chrome extension that provides a dark mode toggle specifically for Cont
 
 ## Installation
 
+### Step1: Download zip file
 
-### Step 1: Load Extension in Chrome
+1. Select Download ZIP.
+2. Extract the ZIP file to a folder on your system
+
+### Step 2: Load Extension in Chrome
 
 1. Open Chrome and go to `chrome://extensions/`
 2. Enable "Developer mode" in the top right
@@ -21,7 +25,7 @@ A simple Chrome extension that provides a dark mode toggle specifically for Cont
 4. Select this folder containing the extension files
 5. The extension should now appear in your extensions list
 
-### Step 2: Use the Extension
+### Step 3: Use the Extension
 
 1. Navigate to any Contentstack app page (app.contentstack.com)
 2. Click the extension icon in your Chrome toolbar
