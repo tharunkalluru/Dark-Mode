@@ -30,7 +30,7 @@ A simple Chrome extension that provides a dark mode toggle specifically for Cont
 
 ## How It Works
 
-This extension uses a CSS filter approach similar to the popular dark-mode extension but is specifically optimized for Contentstack:
+This extension uses a CSS filter approach
 
 - **Content Script**: Injects dark mode styles when enabled
 - **Background Script**: Handles persistence and tab management
