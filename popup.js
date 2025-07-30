@@ -2,11 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
   const toggle = document.getElementById('darkModeToggle');
   const status = document.getElementById('status');
   
+  // Initialize with light mode immediately
+  document.body.classList.add('light-mode');
+  
   // Load current state
   chrome.storage.sync.get(['darkModeEnabled'], function(result) {
     const isEnabled = result.darkModeEnabled || false;
     updateUI(isEnabled);
-    updatePopupTheme(isEnabled);
+    // Small delay to ensure initial state is set before transition
+    setTimeout(() => {
+      updatePopupTheme(isEnabled);
+    }, 10);
   });
   
   // Handle toggle click
@@ -23,10 +29,16 @@ document.addEventListener('DOMContentLoaded', function() {
         // Send message to content script
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
           if (tabs[0] && tabs[0].url.includes('app.contentstack.com')) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-              action: 'toggleDarkMode',
-              enabled: newState
-            });
+            chrome.tabs.sendMessage(
+              tabs[0].id,
+              { action: 'toggleDarkMode', enabled: newState },
+              function () {
+                // ignore errors when no receiving end exists
+                if (chrome.runtime.lastError) {
+                  /* no-op */
+                }
+              }
+            );
           }
         });
       });
@@ -54,6 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
       body.classList.remove('dark-mode');
       body.classList.add('light-mode');
     }
+    
+    // Force a reflow to ensure CSS transitions trigger properly
+    void body.offsetHeight;
   }
   
   // Check if we're on a Contentstack page
